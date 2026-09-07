@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skill（Agent Skill）</title>
+<style>
+:root{color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#1f2328;font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+.wrap{max-width:880px;margin:0 auto;padding:32px 24px 80px}
+h1{font-size:1.9em;margin:.4em 0 .8em;border-bottom:3px solid #0969da;padding-bottom:.35em}
+h2{font-size:1.35em;margin:1.8em 0 .6em;padding-bottom:.25em;border-bottom:1px solid #d0d7de}
+h3{font-size:1.12em;margin:1.4em 0 .5em}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.95em}
+th,td{border:1px solid #d0d7de;padding:8px 12px;text-align:left}
+th{background:#f6f8fa}
+tr:nth-child(even) td{background:#fafbfc}
+code{background:#eff1f3;padding:2px 6px;border-radius:4px;font-size:.9em;font-family:Consolas,Menlo,monospace}
+pre{background:#f6f8fa;border:1px solid #d0d7de;border-radius:6px;padding:14px 16px;overflow-x:auto}
+pre code{background:none;padding:0}
+blockquote{border-left:4px solid #0969da;margin:1em 0;padding:.4em 1em;background:#f0f6ff;color:#3a4a5a}
+blockquote p{margin:.4em 0}
+details{border:1px solid #d0d7de;border-radius:6px;padding:10px 16px;margin:10px 0;background:#fff}
+summary{cursor:pointer;font-weight:600;color:#0969da}
+a{color:#0969da;text-decoration:none}
+a:hover{text-decoration:underline}
+.meta{background:#f6f8fa;border:1px solid #d0d7de;border-radius:6px;padding:10px 16px;font-size:.9em;color:#57606a;margin-bottom:2em}
+.meta b{color:#24292f}
+ul,ol{padding-left:1.6em}
+hr{border:none;border-top:1px solid #d0d7de;margin:2em 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta"><b>学习概念：</b>Skill（Agent Skill）<br><b>英文/别名：</b>Agent Skill / Skills<br><b>领域：</b>AI Agent 应用<br><b>生成方式：</b>concept-learner Skill<br><b>日期：</b>2026-09-07<br><b>核查状态：</b>已人工核查（本人通读并修改）</div>
+<h1 id="skillagent-skill">Skill（Agent Skill）学习笔记</h1>
+<h2 id="_1">学习目标</h2>
+<p>学完这一篇，你应该能回答：</p>
+<ol>
+<li>Skill 到底是什么？它解决了模型的什么问题？</li>
+<li>SKILL.md 长什么样？Skill 存放在哪里、怎么被 AI 发现和调用？</li>
+<li>Skill 和普通提示词（Prompt）、和 MCP/插件有什么不同？</li>
+</ol>
+<h2 id="_2">一句话理解</h2>
+<p>我的理解：<strong>Skill 是把"做某一类任务的方法"打包成文件、放在规定目录里、让 AI 按需读取执行的说明书包</strong>。它把"专家脑子里的做法"（步骤、规则、模板、脚本）变成 AI 能读的文本和文件，AI 觉得任务相关时就加载它照着做。做完这次，下次同类任务还能复用——知识沉淀下来了。</p>
+<p>我自己的类比：Skill 像给新员工看的<strong>岗位 SOP 手册</strong>。公司没有手册时，每个新人（每次对话的 AI）都得从头摸索，做出来的东西五花八门；有了手册，新人按手册办事，质量稳定、还能把老师傅的经验传下去。本仓库里这个 concept-learner 就是一份"如何生成概念学习资料"的 SOP。</p>
+<h2 id="_3">核心机制 / 组成</h2>
+<h3 id="skillmd-skill">SKILL.md：一个 Skill 的最小单位</h3>
+<pre><code class="language-text">concept-learner/            # 目录名 = 技能名（全小写+连字符）
+└── SKILL.md                # 必须存在：YAML 元数据 + Markdown 正文
+</code></pre>
+<p>SKILL.md 结构：</p>
+<pre><code class="language-yaml">---
+name: concept-learner        # 技能名，与目录名一致
+description: 概念学习资料生成器。当用户想学习某个新概念并要求生成结构化学习资料时使用…
+---
+# 正文：告诉 AI 怎么做
+## 适用场景 … ## 输入信息 … ## 生成步骤 … ## 输出结构 …
+</code></pre>
+<ul>
+<li><strong>name / description</strong> 是必填元数据。AI 靠 description 判断"这个技能该不该现在用"。</li>
+<li><strong>渐进式披露（progressive disclosure）</strong>：平时只把 name+description 给模型看（约几十 token，不占多少上下文）；模型判断相关后才读取完整 SKILL.md；更细的资料可放 <code>references/</code>、脚本放 <code>scripts/</code>、模板放 <code>assets/</code>，按需再加载。这样 AI 可以同时装几十上百个 Skill 而不撑爆上下文窗口。</li>
+<li><strong>推荐把主文件控制在 500 行内</strong>，细节拆到子文件。</li>
+</ul>
+<h3 id="skill">Skill 存在哪里（两级）</h3>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>路径</th>
+<th>作用范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户级（个人）</td>
+<td><code>~/.workbuddy/skills/</code>（WorkBuddy）/ <code>~/.claude/skills/</code>（Claude）</td>
+<td>我所有项目都能用</td>
+</tr>
+<tr>
+<td>项目级（随仓库走）</td>
+<td>仓库根目录 <code>.workbuddy/skills/</code> 或 <code>.claude/skills/</code></td>
+<td>只有打开这个项目/仓库时可用；<strong>随 Git 提交，团队共享</strong></td>
+</tr>
+</tbody>
+</table>
+<p>本作业的 concept-learner 属于<strong>项目级</strong>：它放在仓库根目录 <code>.workbuddy/skills/</code> 下，提交到 GitHub 后，任何人 clone 这个仓库并在 WorkBuddy 中打开，都能调用它。这正是"Skill 随代码走、可版本管理、可分发"的价值。</p>
+<h3 id="_4">工作流程</h3>
+<pre class="mermaid">
+flowchart LR
+    A[用户提出任务] --&gt; B[AI 看到各 Skill 的 name+description]
+    B --&gt; C{任务与某 Skill 相关?}
+    C --&gt;|是| D[加载完整 SKILL.md]
+    D --&gt; E[按步骤执行&lt;br/&gt;必要时读取 references/scripts]
+    E --&gt; F[产出结果]
+    C --&gt;|否| G[用通用能力直接做]
+</pre>
+<h2 id="_5">具体应用场景</h2>
+<p><strong>场景一（本仓库）</strong>：老师在课程里让"学习 Agent / 上下文 / Skill 三个概念"。我把"如何产出一份合格概念学习资料"的方法固化成了 concept-learner 这个 Skill，然后直接让它按流程生成三份笔记——同一份方法论以后学"RAG""MCP"等任何新概念还能复用。</p>
+<p><strong>场景二：专业文档处理</strong>。Anthropic 官方预置的 PPTX/XLSX/DOCX/PDF 等 Skill：AI 要生成 PowerPoint 时自动加载对应技能，知道该用什么库、什么结构，而不是每次瞎试。</p>
+<p><strong>场景三：团队规范固化</strong>。比如把"公司 PPT 必须用哪些字体、什么配色"写成一个 brand-guidelines Skill 放进仓库，全团队 AI 生成的对外材料自动合规。</p>
+<h2 id="_6">容易混淆的概念辨析</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>本质</th>
+<th>我的区分口诀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prompt（提示词）</td>
+<td>一次性文本指令</td>
+<td>口头交代一次</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>结构化、可版本管理、可随仓库分发的说明书包</td>
+<td>存档的 SOP 手册</td>
+</tr>
+<tr>
+<td>MCP / Tool</td>
+<td>给 AI 接外部工具/数据的<strong>连接标准</strong></td>
+<td>AI 的"手"</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>教 AI"这类活怎么干"的<strong>知识包</strong></td>
+<td>AI 的"方法"</td>
+</tr>
+<tr>
+<td>Subagent（子智能体）</td>
+<td>独立上下文、独立任务的 AI 分身</td>
+<td>派出去的员工</td>
+</tr>
+</tbody>
+</table>
+<p>高频混淆点：</p>
+<ul>
+<li><strong>Skill ≠ 更长的 Prompt</strong>。Prompt 是一次性对话文本；Skill 是文件系统里带元数据、可被自动发现、按需加载、可被 Git 管理复用的标准结构。Anthropic 官方把 Skill 定位为"将程序性知识（procedural knowledge）打包"的机制。</li>
+<li><strong>Skill ≠ MCP</strong>。MCP 解决"AI 怎么连上工具/数据源"（连接层）；Skill 解决"AI 怎么把活干对"（知识层）。两者互补：可以给 Skill 配脚本，也可以让 Skill 教 AI 去用某个 MCP 工具。</li>
+<li><strong>Skill ≠ 每次都会自动生效</strong>。AI 要"判断相关才加载"，description 写得含糊就可能导致该用时不用、不该用时乱用。</li>
+</ul>
+<h2 id="_7">使用边界 / 常见误区</h2>
+<ul>
+<li><strong>描述决定触发</strong>：description 要写清"做什么 + 什么时候用"，这是 AI 决定是否调用它的唯一依据。</li>
+<li><strong>内容质量决定上限</strong>：Skill 只是把方法固化，方法本身错、过时，AI 照做也是错的。要定期维护更新。</li>
+<li><strong>安全风险</strong>：Skill 本质是"让 AI 按外部指令行事"，恶意 Skill 可能诱导 AI 执行危险操作（读敏感文件、外传数据、乱跑命令）。只用可信来源的 Skill，安装前要审计 SKILL.md 和附带脚本。官方对此有明确安全警告。</li>
+<li><strong>别写成一次性提示词</strong>：好的 Skill 要抽象出可复用的流程（能接收不同输入），只针对单一任务的 Skill 价值有限。</li>
+<li>常见误区：把 Skill 当"万能指令库"，指望它替 AI 变聪明——Skill 沉淀的是流程和知识，不改变模型本身能力。</li>
+</ul>
+<h2 id="_8">自测问题</h2>
+<p><details>
+<summary>1. 判断：把一个长提示词保存成 .txt 文件放在桌面，就是 Skill 了。对吗？</summary>
+<p>不对。Skill 必须按标准结构组织：目录名=技能名，内含带 YAML 元数据（name/description）的 SKILL.md，且放在 AI 会发现的目录（如项目 .workbuddy/skills/、用户 ~/.workbuddy/skills/）。裸 txt 不会被发现和加载。</p>
+</details></p>
+<p><details>
+<summary>2. 为什么"渐进式披露"让 AI 能同时装很多 Skill？</summary>
+<p>因为平时只暴露几十 token 的 name+description 元数据给模型，完整内容在触发时才加载。几十个 Skill 只占极小上下文，模型不会眼花缭乱。</p>
+</details></p>
+<p><details>
+<summary>3. 简答：项目级 Skill 和用户级 Skill 的差别？</summary>
+<p>项目级放仓库根目录 .workbuddy/skills/，随 Git 提交、随仓库分发、只有打开该项目时可用，适合团队共享；用户级放用户主目录 ~/.workbuddy/skills/，对该用户所有项目可用，是个人私藏。</p>
+</details></p>
+<p><details>
+<summary>4. 场景题：你想让 AI 每次写论文摘要都按某大学格式来，该怎么做最合理？</summary>
+<p>把这所大学的摘要格式规范写成 Skill（说明适用场景、输入论文、输出格式步骤、自检要求），放在项目级 .workbuddy/skills/ 并提交 Git，需要时触发；比每次复制粘贴一段提示词可靠、可复用、可维护。</p>
+</details></p>
+<p><details>
+<summary>5. 为什么官方警告"不要用不可信来源的 Skill"？</summary>
+<p>Skill 内容会指导 AI 行动（读文件、跑脚本、调工具）。恶意 Skill 可注入指令让 AI 泄露数据、执行危险操作。装 Skill 像装软件，先审计再信任。</p>
+</details></p>
+<h2 id="_9">参考来源</h2>
+<ol>
+<li><strong>Claude/Anthropic —《Creating custom skills》（官方技能制作指南）</strong>
+   https://claude.com/docs/skills/how-to
+   用途：支撑 SKILL.md 结构（YAML 元数据、目录结构、500 行建议、测试方法）。官方一手来源。</li>
+<li><strong>Claude Platform —《Agent Skills 概述》（官方平台文档）</strong>
+   https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
+   用途：支撑 Skill 定义、name/description 字段规范、渐进式披露、安全警告。官方一手来源。</li>
+<li><strong>WorkBuddy/CodeBuddy 官方文档</strong>
+   https://www.codebuddy.cn/docs/workbuddy/Overview
+   用途：支撑本仓库所用 WorkBuddy 的 Skill 两级存放机制（用户级 <code>~/.workbuddy/skills/</code>、项目级 <code>.workbuddy/skills/</code>）。</li>
+<li><strong>Anthropic 博客 —《Building Agents with Skills》（2025，阐述 Skill 解决"智能体缺乏领域专长"问题）</strong>
+   https://claude.com/blog/building-agents-with-skills-equipping-agents-for-specialized-work
+   用途：支撑"Skill 把通才 AI 变成专才、弥补其不会自动学习重复任务"的核心论点。</li>
+</ol>
+<blockquote>
+<p>核查记录：链接 1、2、4 于 2026-09-07 通过搜索确认可访问；链接 3 为产品官方文档域名。类比与"两级存放"表格为个人整理。Skill 生态迭代很快，字段与路径以官方当前文档为准。</p>
+</blockquote>
+<hr>
+<footer style="font-size:.85em;color:#6e7781">
+本文档由 concept-learner Skill 生成，经作者人工核查（已人工核查（本人通读并修改））。
+</footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'base',themeVariables:{fontSize:'14px'}});</script>
+</body>
+</html>

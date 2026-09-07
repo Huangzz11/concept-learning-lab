@@ -20,16 +20,18 @@ concept-learning-lab/
 │           ├── SKILL.md
 │           └── references/
 │               └── template.md  # 八小节输出骨架模板
-├── learning-materials/          # 由 Skill 生成的学习资料
-│   ├── agent.md                 # Agent（智能体）
-│   ├── llm-context.md           # 大模型的上下文（Context）
-│   ├── skill.md                 # Skill（Agent Skill）
-│   └── concept-relationship.md  # 三概念关系说明
+├── learning-materials/          # 由 Skill 生成的学习资料（HTML 页面，可直接浏览）
+│   ├── agent.html               # Agent（智能体）
+│   ├── llm-context.html         # 大模型的上下文（Context）
+│   ├── skill.html               # Skill（Agent Skill）
+│   └── concept-relationship.html# 三概念关系说明
+├── tools/
+│   └── md2html.py               # Markdown → 单文件 HTML 转换工具
 ├── README.md
 └── .gitignore
 ```
 
-> 说明：作业示例中的文件名后缀为 `.html`，我按"允许自行调整"的规则改用 **Markdown**，便于在 GitHub 上直接阅读渲染、用 git 做差异对比。内容结构完全对应作业要求（解释/机制/场景/辨析/边界/来源/自测）。
+> 说明：文件名后缀按作业示例统一为 `.html`。每份资料是**自包含网页**（含元信息条、Mermaid 图、可折叠自测题），在 GitHub 上点击即可阅读，也可下载后本地浏览器打开。内容结构完全对应作业要求（解释/机制/场景/辨析/边界/来源/自测）。Markdown 源可通过 `tools/md2html.py` 从任意含元信息头的 md 生成。
 
 ## 项目级 Skill 说明
 
@@ -52,10 +54,10 @@ concept-learning-lab/
 
 | 文件 | 内容 | 一句话主题 |
 |---|---|---|
-| `learning-materials/agent.md` | Agent 智能体 | 把"方向盘"交给大模型的系统：组成、与 Workflow 的界线、ReAct 循环 |
-| `learning-materials/llm-context.md` | 大模型的上下文 | 模型决策依据的"工作台"：token、上下文窗口、与记忆的区分 |
-| `learning-materials/skill.md` | Skill | 把任务方法论固化成文件的机制：SKILL.md、渐进式披露、两级存放 |
-| `learning-materials/concept-relationship.md` | 三概念关系 | 上下文决定 Agent 决策质量，Skill 给 Agent 跨会话的可复用知识 |
+| `learning-materials/agent.html` | Agent 智能体 | 把"方向盘"交给大模型的系统：组成、与 Workflow 的界线、ReAct 循环 |
+| `learning-materials/llm-context.html` | 大模型的上下文 | 模型决策依据的"工作台"：token、上下文窗口、与记忆的区分 |
+| `learning-materials/skill.html` | Skill | 把任务方法论固化成文件的机制：SKILL.md、渐进式披露、两级存放 |
+| `learning-materials/concept-relationship.html` | 三概念关系 | 上下文决定 Agent 决策质量，Skill 给 Agent 跨会话的可复用知识 |
 
 ## AI 使用说明与人工核查记录
 
@@ -68,9 +70,10 @@ concept-learning-lab/
 **我人工核查与修改的部分**
 1. 通读三份概念资料，确认概念解释与我的课堂理解一致，修正了表述含糊处；
 2. 逐条点击/检索了"参考来源"中的链接，确认可访问、内容与引用论断匹配；
-3. 将资料中"整段式 AI 表述"改写为个人化语言，并加入自己的类比（白板/实习生/SOP 手册）与判断——关系说明文件 `concept-relationship.md` 主要是我按自己理解组织并请 AI 校对的；
+3. 将资料中"整段式 AI 表述"改写为个人化语言，并加入自己的类比（白板/实习生/SOP 手册）与判断——关系说明文件 `concept-relationship.html` 主要是我按自己理解组织并请 AI 校对的；
 4. 确认仓库不含任何 API Key、密码、个人隐私；`.gitignore` 已排除敏感与临时文件类型；
-5. **Skill v2 升级（2026-09-07）**：对照本人已有的个人级 Skill `topic-research` 的工程标准，为 `concept-learner` 补充了量化检索要求、元信息块规范、10 条自检清单与 `references/template.md` 模板；并对全部学习资料执行了一遍"禁用句式（如「不是……而是……」）与 AI 腔"全文扫描，发现并修正 1 处表述（见 `concept-relationship.md`）。
+5. **Skill v2 升级（2026-09-07）**：对照本人已有的个人级 Skill `topic-research` 的工程标准，为 `concept-learner` 补充了量化检索要求、元信息块规范、10 条自检清单与 `references/template.md` 模板；并对全部学习资料执行了一遍"禁用句式（如「不是……而是……」）与 AI 腔"全文扫描，发现并修正 1 处表述；
+6. **资料改为 HTML 页面（2026-09-07）**：按作业示例目录结构，将四份学习资料统一输出为 `.html`（自包含网页：元信息条 + Mermaid 图 + 可折叠自测题），转换后通读 HTML 渲染结果确认无内容丢失、无格式错乱；`tools/md2html.py` 为可复用转换工具。
 
 **核查状态**：每份资料文件头部均含元信息块（生成日期、调用 Skill、review_status），其中三份概念资料与关系说明均已标记"已人工核查"。
 
