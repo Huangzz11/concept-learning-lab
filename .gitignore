@@ -1,0 +1,43 @@
+# ===== 敏感信息：无论如何都不要提交 =====
+*.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+**/token*
+**/*secret*
+credentials.json
+
+# ===== 个人隐私/本地配置 =====
+*.local
+*.log
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ===== Node =====
+node_modules/
+npm-debug.log*
+
+# ===== 编辑器/系统 =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== 临时与缓存 =====
+*.tmp
+*.bak
+*~
+.tmp/
+cache/
