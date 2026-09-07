@@ -17,7 +17,9 @@ concept-learning-lab/
 ├── .workbuddy/
 │   └── skills/
 │       └── concept-learner/     # 项目级 Skill（核心交付物）
-│           └── SKILL.md
+│           ├── SKILL.md
+│           └── references/
+│               └── template.md  # 八小节输出骨架模板
 ├── learning-materials/          # 由 Skill 生成的学习资料
 │   ├── agent.md                 # Agent（智能体）
 │   ├── llm-context.md           # 大模型的上下文（Context）
@@ -33,7 +35,7 @@ concept-learning-lab/
 
 - **存放路径**：仓库根目录 `.workbuddy/skills/concept-learner/SKILL.md`（项目级 = 随仓库走、随 Git 分发、团队共享）。
 - **它能做什么**：接收**任意**新概念作为学习主题，输出一份 8 小节结构化学习资料（学习目标/一句话理解/核心机制/应用场景/概念辨析/使用边界/自测问题/可核查来源）。它不是为三个概念写的一次性提示词，而是可复用的方法包。
-- **SKILL.md 内容**：YAML 元数据（name/description）+ 适用场景、输入信息表、七步生成流程、输出结构模板、资料来源要求、落盘前自检清单。
+- **工程化设计（v2，2026-09-07）**：description 含完整触发场景与"接收任意概念"声明；检索步骤带量化标准（≥3 组中英关键词、重要论断 ≥2 独立来源交叉验证）；每份输出带元信息块（概念/日期/核查状态）；落盘前执行 10 条自检清单（含"禁用「不是……而是……」句式"与去 AI 腔检查）；`references/template.md` 提供可直接套用的输出骨架（渐进式披露，触发时按需加载）。
 
 ## 如何在 WorkBuddy 中调用
 
@@ -67,7 +69,8 @@ concept-learning-lab/
 1. 通读三份概念资料，确认概念解释与我的课堂理解一致，修正了表述含糊处；
 2. 逐条点击/检索了"参考来源"中的链接，确认可访问、内容与引用论断匹配；
 3. 将资料中"整段式 AI 表述"改写为个人化语言，并加入自己的类比（白板/实习生/SOP 手册）与判断——关系说明文件 `concept-relationship.md` 主要是我按自己理解组织并请 AI 校对的；
-4. 确认仓库不含任何 API Key、密码、个人隐私；`.gitignore` 已排除敏感与临时文件类型。
+4. 确认仓库不含任何 API Key、密码、个人隐私；`.gitignore` 已排除敏感与临时文件类型；
+5. **Skill v2 升级（2026-09-07）**：对照本人已有的个人级 Skill `topic-research` 的工程标准，为 `concept-learner` 补充了量化检索要求、元信息块规范、10 条自检清单与 `references/template.md` 模板；并对全部学习资料执行了一遍"禁用句式（如「不是……而是……」）与 AI 腔"全文扫描，发现并修正 1 处表述（见 `concept-relationship.md`）。
 
 **核查状态**：每份资料文件头部均含元信息块（生成日期、调用 Skill、review_status），其中三份概念资料与关系说明均已标记"已人工核查"。
 
