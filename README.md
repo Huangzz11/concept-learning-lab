@@ -16,10 +16,12 @@
 concept-learning-lab/
 ├── .workbuddy/
 │   └── skills/
-│       └── concept-learner/     # 项目级 Skill（核心交付物）
-│           ├── SKILL.md
-│           └── references/
-│               └── template.md  # 八小节输出骨架模板
+│       ├── concept-learner/     # 项目级 Skill：概念学习资料生成器
+│       │   ├── SKILL.md
+│       │   └── references/
+│       │       └── template.md  # 八小节输出骨架模板
+│       └── wiki-keeper/         # 项目级 Skill：自维护互链知识库维护器
+│           └── SKILL.md
 ├── learning-materials/          # 由 Skill 生成的学习资料（HTML 页面，可直接浏览）
 │   ├── agent.html               # Agent（智能体）
 │   ├── llm-context.html         # 大模型的上下文（Context）
@@ -27,8 +29,12 @@ concept-learning-lab/
 │   ├── llm-model.html           # 大语言模型 LLM（新增，2026-09-09）
 │   ├── llm-model.md             # 大语言模型 LLM 的可编辑源文件（示例）
 │   └── concept-relationship.html# 三概念关系说明
+├── kb/                          # 自维护互链知识库（wiki-keeper Skill 维护）
+│   ├── raw/                     #   输入层：源文档（md，只读存档）
+│   ├── wiki/                    #   知识层：index / log / overview / sources / entities / concepts / syntheses
+│   └── graph/                   #   预留：知识图谱
 ├── tools/
-│   └── md2html.py               # Markdown → 单文件 HTML 转换工具
+│   ├── md2html.py               # Markdown → 单文件 HTML 转换工具
 ├── README.md
 └── .gitignore
 ```
@@ -52,7 +58,19 @@ concept-learning-lab/
 
 > 提示：只有"打开该仓库为当前项目"时，这个项目级 Skill 才可用；个人级 Skill（所有项目可用）存放在用户主目录 `~/.workbuddy/skills/`。
 
-## 已生成的学习资料（2026-09-07）
+## 知识库（kb/）· 自维护互链 wiki
+
+仓库内另有一套**自维护互链知识库**（`kb/`），由项目级 Skill **wiki-keeper** 维护，设计借鉴 MIT 开源项目 [SamurAIGPT/llm-wiki-agent](https://github.com/SamurAIGPT/llm-wiki-agent)（调研见 `kb/raw/llm-wiki-agent-report.md`）。
+
+- 结构：`kb/raw/`（只读源文档）→ `kb/wiki/`（Agent 维护的结构化互链 wiki：index 目录、log 日志、overview 综述、sources 源页、entities 实体页、concepts 概念页、syntheses 沉淀问答）。
+- 首批内容：把本仓库 4 份概念学习资料 + 关系说明 + llm-wiki-agent 调研报告共 6 份文档 ingest 入库，产出 17 个互链页面。
+- **怎么用**（在 WorkBuddy 中打开本仓库后）：
+  - `ingest <文件或主题>` → 收录新资料，Agent 自动建/更页面、维护双链
+  - `query: <问题>` 或 "wiki 里怎么说 XX" → 基于知识库回答
+  - `lint` → 检查孤儿页/坏链/缺页，输出报告
+- 该 Skill 与 concept-learner 共同演示"用 Skill 沉淀方法、用 wiki 沉淀知识"的完整闭环。
+
+## 已生成的学习资料（2026-09-07 起）
 
 | 文件 | 内容 | 一句话主题 |
 |---|---|---|
@@ -77,7 +95,8 @@ concept-learning-lab/
 4. 确认仓库不含任何 API Key、密码、个人隐私；`.gitignore` 已排除敏感与临时文件类型；
 5. **Skill v2 升级（2026-09-07）**：对照本人已有的个人级 Skill `topic-research` 的工程标准，为 `concept-learner` 补充了量化检索要求、元信息块规范、10 条自检清单与 `references/template.md` 模板；并对全部学习资料执行了一遍"禁用句式（如「不是……而是……」）与 AI 腔"全文扫描，发现并修正 1 处表述；
 6. **资料改为 HTML 页面（2026-09-07）**：按作业示例目录结构，将四份学习资料统一输出为 `.html`（自包含网页：元信息条 + Mermaid 图 + 可折叠自测题），转换后通读 HTML 渲染结果确认无内容丢失、无格式错乱；`tools/md2html.py` 为可复用转换工具；
-7. **新增第 4 个概念（2026-09-09）**：通过个人级 `topic-research` Skill 的"概念学习模式"生成"大语言模型 LLM"学习资料（`llm-model.html`，md 源同目录保留），来源经检索核实；作者通读核查后将 review_status 更新为"已人工核查"。
+7. **新增第 4 个概念（2026-09-09）**：通过个人级 `topic-research` Skill 的"概念学习模式"生成"大语言模型 LLM"学习资料（`llm-model.html`，md 源同目录保留），来源经检索核实；作者通读核查后将 review_status 更新为"已人工核查"；
+8. **知识库建立（2026-09-09）**：借鉴 MIT 开源项目 llm-wiki-agent 设计，在仓库内新建 `kb/` 自维护互链知识库与项目级 Skill `wiki-keeper`；首批 6 份源文档（4 份概念资料 + 关系说明 + 调研报告）由 Agent 执行 ingest 产出 17 个互链页面，页面内容为 Agent 自组织摘要，已通读抽查；该项目采用 MIT 协议，按协议保留来源署名（见 `kb/raw/llm-wiki-agent-report.md`）。
 
 **核查状态**：每份资料文件头部均含元信息块（生成日期、调用 Skill、review_status），四份概念学习资料与概念关系说明均已由作者通读核查并标记"已人工核查"。
 
