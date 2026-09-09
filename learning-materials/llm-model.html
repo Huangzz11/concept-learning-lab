@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="zh-CN" data-page-node-id="NGHig7WWt2ykvHUM7kngRM">
+<head data-page-node-id="KyOXfjm6T9hvhIqw4ezvv5">
+<meta charset="utf-8" data-page-node-id="W0RiKQBNdgTPmcFD2irURW">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="8Y4zBVcEHSO4arNebAn2h3">
 <title>大语言模型（LLM / Model）</title>
 <style>
 :root{color-scheme:light}
@@ -31,23 +31,23 @@ ul,ol{padding-left:1.6em}
 hr{border:none;border-top:1px solid #d0d7de;margin:2em 0}
 </style>
 </head>
-<body>
-<div class="wrap">
-<div class="meta"><b>学习概念：</b>大语言模型（LLM / Model）<br><b>英文/别名：</b>Large Language Model / LLM<br><b>领域：</b>人工智能<br><b>生成方式：</b>topic-research（概念学习模式）· concept-learner 规范 Skill<br><b>日期：</b>2026-09-09<br><b>核查状态：</b>待人工核查</div>
-<h1 id="llm">大语言模型（LLM）学习笔记</h1>
-<h2 id="_1">学习目标</h2>
-<p>学完这一篇，你应该能回答：</p>
-<ol>
-<li>大语言模型（LLM）到底是什么？它和传统机器学习模型差在哪？</li>
-<li>LLM 是怎么被"造"出来的？为什么规模变大后会冒出小模型没有的能力？</li>
-<li>在 Agent 系统里，模型扮演什么角色？它和上下文、Skill 是什么分工？</li>
+<body data-page-node-id="2Z6fApVKtkxK2qgMGJaiB3">
+<div class="wrap" data-page-node-id="GxwBcii9gnAXyrBiRtVDfl">
+<div class="meta" data-page-node-id="KhjMLQj0c9uIfzAW4X2QJ0"><b data-page-node-id="cCmOGOrFOuDlwlkdj55vCM">学习概念：</b>大语言模型（LLM / Model）<br data-page-node-id="DpxKGBkHtJsveq6BAAGhpc"><b data-page-node-id="hWCVuE54WOFklOyalJ7x1t">英文/别名：</b>Large Language Model / LLM<br data-page-node-id="2uCaEcMpaoRckexpSxITnU"><b data-page-node-id="0xscYGVdltmDYLvewDbsBr">领域：</b>人工智能<br data-page-node-id="YOJ8zYJdDcMcvfPpm5dhY7"><b data-page-node-id="5KBpTGk9gXT3BPTnkPQXCU">生成方式：</b>topic-research（概念学习模式）· concept-learner 规范 Skill<br data-page-node-id="pz3qdrQ77bsCtMBxUDalUp"><b data-page-node-id="Bz0yfaZsJVBwVrlNHj5awA">日期：</b>2026-09-09<br data-page-node-id="ETBSn3WNbjjetN4VMnGBFI"><b data-page-node-id="RWvFduCblY8LDE6XxnwIOB">核查状态：</b>已人工核查（本人通读并修改）</div>
+<h1 id="llm" data-page-node-id="eYlMTY0lsnDSNByHPFeUhM">大语言模型（LLM）学习笔记</h1>
+<h2 id="_1" data-page-node-id="PijS3RxofJnHG9FNQfoLxI">学习目标</h2>
+<p data-page-node-id="15M3CpuvtErYq2MDd8lcqY">学完这一篇，你应该能回答：</p>
+<ol data-page-node-id="4vpH7lkoCTPECq87iGpssm">
+<li data-page-node-id="eiv1IseNCsHOnYt7ADW4Fk">大语言模型（LLM）到底是什么？它和传统机器学习模型差在哪？</li>
+<li data-page-node-id="GAiJxRmm4GBr4nIpaXEKQd">LLM 是怎么被"造"出来的？为什么规模变大后会冒出小模型没有的能力？</li>
+<li data-page-node-id="ntELAzZI1i4ueZsor8s15u">在 Agent 系统里，模型扮演什么角色？它和上下文、Skill 是什么分工？</li>
 </ol>
-<h2 id="_2">一句话理解</h2>
-<p>我的理解：<strong>LLM 是"读了海量文字、靠'预测下一个词'练出来的巨型神经网络"</strong>——它把人类写过的书、网页、代码都读进参数里，学会的不是背答案，而是"接着写下去"的语言规律，于是给它一句话，它能续写、能问答、能推理、能写代码。</p>
-<p>我自己的类比：LLM 像一个"只读过书、从没上过班"的文字天才。它没长手没长脚（不会自己行动），只能输出文字；但你给它一个任务描述（提示词），它能像最聪明的实习生一样把该说的都想明白、说清楚。<strong>要它真正"动手干活"，就得给它配上工具和身体——这就是 Agent 出现的原因</strong>。</p>
-<h2 id="_3">核心机制 / 组成</h2>
-<h3 id="_4">三个关键支柱：架构、预训练、规模</h3>
-<pre class="mermaid">
+<h2 id="_2" data-page-node-id="myVCDTwmP838xdEyuCkBag">一句话理解</h2>
+<p data-page-node-id="xoDOAn3AM11xJS6kDU0ugd">我的理解：<strong data-page-node-id="I2v3x6sRcfH5KjdUJeaRZz">LLM 是"读了海量文字、靠'预测下一个词'练出来的巨型神经网络"</strong>——它把人类写过的书、网页、代码都读进参数里，学会的不是背答案，而是"接着写下去"的语言规律，于是给它一句话，它能续写、能问答、能推理、能写代码。</p>
+<p data-page-node-id="Cgfl5IqunJNMznru91oegE">我自己的类比：LLM 像一个"只读过书、从没上过班"的文字天才。它没长手没长脚（不会自己行动），只能输出文字；但你给它一个任务描述（提示词），它能像最聪明的实习生一样把该说的都想明白、说清楚。<strong data-page-node-id="IEMYkF2zoEVDuMg15zc98O">要它真正"动手干活"，就得给它配上工具和身体——这就是 Agent 出现的原因</strong>。</p>
+<h2 id="_3" data-page-node-id="Y6f2kig5OYmd4vsRso3IkZ">核心机制 / 组成</h2>
+<h3 id="_4" data-page-node-id="wm44N0fnYv3PLP9DiE9j05">三个关键支柱：架构、预训练、规模</h3>
+<pre class="mermaid" data-page-node-id="r1ml1QibvOg4G5ZpfmOhFA">
 flowchart TD
     A[Transformer 架构&lt;br/&gt;自注意力机制] --&gt; B[预训练&lt;br/&gt;在海量文本上预测下一个词]
     B --&gt; C[规模扩大&lt;br/&gt;参数达百亿/千亿级]
@@ -56,110 +56,110 @@ flowchart TD
     E --&gt; F[可用的对话/推理模型]
     F --&gt; G[Agent 化：模型 + 工具 + 检索 + 记忆&lt;br/&gt;成为智能体的大脑]
 </pre>
-<ol>
-<li><strong>架构：Transformer + 自注意力</strong>。2017 年《Attention Is All You Need》提出 Transformer，用"注意力"机制让模型处理长文本时能看到词与词之间的关系。今天的主流 LLM（GPT、Claude、Llama、DeepSeek 等）都用这个架构。</li>
-<li><strong>预训练：预测下一个词</strong>。把互联网级别的文本喂给模型，让它反复练习"根据前文预测下一个词"。练完，语言规律、事实知识、推理模式都沉淀进模型的参数里。注意：这个阶段模型只会"续写"，不会"对话"。</li>
-<li><strong>规模 → 涌现能力</strong>。当参数规模跨过某个门槛（百亿级往上），模型会冒出小模型没有的能力（综述里称为 emergent abilities，涌现能力）：<strong>上下文学习</strong>（给几个例子它就会照着做）、<strong>指令遵循</strong>（听懂人话指令）、<strong>思维链推理</strong>（一步步想）。GPT-3 之后的路线基本靠"更大"换"更会"。</li>
-<li><strong>对齐：让它听话</strong>。用指令微调（SFT）和人类反馈强化学习（RLHF）等方法，把"会续写的机器"调教成"愿意好好回答的助手"，并学会拒绝危险请求。</li>
+<ol data-page-node-id="mtfVPurIG2GHSB8gmc16Rb">
+<li data-page-node-id="6n8Z7e3OhY16jOH0HVuwUT"><strong data-page-node-id="kLGZg2vei1VOMujODDZXgw">架构：Transformer + 自注意力</strong>。2017 年《Attention Is All You Need》提出 Transformer，用"注意力"机制让模型处理长文本时能看到词与词之间的关系。今天的主流 LLM（GPT、Claude、Llama、DeepSeek 等）都用这个架构。</li>
+<li data-page-node-id="hyctRwa3uA6JakQnnzpnQE"><strong data-page-node-id="ino1P8s4PYs7zWe6AoVKM2">预训练：预测下一个词</strong>。把互联网级别的文本喂给模型，让它反复练习"根据前文预测下一个词"。练完，语言规律、事实知识、推理模式都沉淀进模型的参数里。注意：这个阶段模型只会"续写"，不会"对话"。</li>
+<li data-page-node-id="0Fx2FxAr6cyaKaY3mBzHTf"><strong data-page-node-id="pYlSRAye0tYCr16NGgqu48">规模 → 涌现能力</strong>。当参数规模跨过某个门槛（百亿级往上），模型会冒出小模型没有的能力（综述里称为 emergent abilities，涌现能力）：<strong data-page-node-id="xulP0tEeAvMiRD25CxEGW8">上下文学习</strong>（给几个例子它就会照着做）、<strong data-page-node-id="9Tt5FGLlEmluX50EJ0DXMc">指令遵循</strong>（听懂人话指令）、<strong data-page-node-id="fSBTR5wjjEPtetd1Rqf02z">思维链推理</strong>（一步步想）。GPT-3 之后的路线基本靠"更大"换"更会"。</li>
+<li data-page-node-id="72ilJXec5mNpKmwSBYA3CA"><strong data-page-node-id="tfx5eWnaVav6qx5Vpt2oCa">对齐：让它听话</strong>。用指令微调（SFT）和人类反馈强化学习（RLHF）等方法，把"会续写的机器"调教成"愿意好好回答的助手"，并学会拒绝危险请求。</li>
 </ol>
-<h3 id="llm-agent">LLM 在 Agent 系统里的位置</h3>
-<p>Agent 的循环是"想→做→看→再想"，其中<strong>"想"就是模型干的</strong>：模型读上下文里的目标与工具结果，输出"下一步该调用哪个工具、参数是什么"，Agent 框架负责执行。模型本身只有文字进文字出，工具、检索、记忆这些"增强"围在它周围（Anthropic 称为 augmented LLM，增强型 LLM）。</p>
-<h2 id="_5">具体应用场景</h2>
-<p><strong>场景一：对话/创作助手</strong>。ChatGPT、文心一言这类产品，本质是"LLM + 聊天外壳"。你输入问题，模型在上下文里看到你的话，续写出回答。</p>
-<p><strong>场景二：Agent 的决策大脑（本项目同款用法）</strong>。llm-wiki-agent 这种项目里，Claude/Codex/Gemini 各自背后的 LLM 负责"读懂一篇论文 → 决定怎么写 wiki 页面 → 调工具建图"的全部智力工作。模型是大脑，文件系统是身体，AGENTS.md 是操作规程。</p>
-<p><strong>场景三：代码生成与补全</strong>。给模型"函数签名 + 注释"，它生成实现；给一段 bug 代码，它定位问题。Cursor、Copilot 都是 LLM 在背后。</p>
-<h2 id="_6">容易混淆的概念辨析</h2>
-<table>
-<thead>
-<tr>
-<th>概念</th>
-<th>本质</th>
-<th>我的区分口诀</th>
+<h3 id="llm-agent" data-page-node-id="MoXhS1VltnocitBOOlsbeo">LLM 在 Agent 系统里的位置</h3>
+<p data-page-node-id="Q8UjPHVAe0kbm52EhuXPxe">Agent 的循环是"想→做→看→再想"，其中<strong data-page-node-id="TP2UHqVjrLcF7UfdHxmtdu">"想"就是模型干的</strong>：模型读上下文里的目标与工具结果，输出"下一步该调用哪个工具、参数是什么"，Agent 框架负责执行。模型本身只有文字进文字出，工具、检索、记忆这些"增强"围在它周围（Anthropic 称为 augmented LLM，增强型 LLM）。</p>
+<h2 id="_5" data-page-node-id="0uMwcCshIqtA03SxEYmtqV">具体应用场景</h2>
+<p data-page-node-id="6NbteREn7w6kfpdR510jC1"><strong data-page-node-id="4OvQ3oECTC5Kzfo1nMqKID">场景一：对话/创作助手</strong>。ChatGPT、文心一言这类产品，本质是"LLM + 聊天外壳"。你输入问题，模型在上下文里看到你的话，续写出回答。</p>
+<p data-page-node-id="AML536AaETXflECWV0GSSz"><strong data-page-node-id="4OQditVabQCtCjFhFjHuIk">场景二：Agent 的决策大脑（本项目同款用法）</strong>。llm-wiki-agent 这种项目里，Claude/Codex/Gemini 各自背后的 LLM 负责"读懂一篇论文 → 决定怎么写 wiki 页面 → 调工具建图"的全部智力工作。模型是大脑，文件系统是身体，AGENTS.md 是操作规程。</p>
+<p data-page-node-id="cvsQ0wXh9WItq4BByZW392"><strong data-page-node-id="gjW0B8qOtDyhzLWCbqzO5C">场景三：代码生成与补全</strong>。给模型"函数签名 + 注释"，它生成实现；给一段 bug 代码，它定位问题。Cursor、Copilot 都是 LLM 在背后。</p>
+<h2 id="_6" data-page-node-id="fIuCow905B9Ni7nScHkgp3">容易混淆的概念辨析</h2>
+<table data-page-node-id="axnvXDYeLXSDouCBwmjjuF">
+<thead data-page-node-id="LnRakt7u7b9THN0yg7aTss">
+<tr data-page-node-id="bObtyxP26oVjQhG46Tld1U">
+<th data-page-node-id="UH2DV8mgVDJuzlOU17hmkm">概念</th>
+<th data-page-node-id="mxkLxgBwlDjlwPNhguy7qW">本质</th>
+<th data-page-node-id="yDZHW7foFIxflU8CTTIAwm">我的区分口诀</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td>机器学习模型（传统）</td>
-<td>针对单一任务训练的小模型（分类、回归）</td>
-<td>只会一门手艺的技工</td>
+<tbody data-page-node-id="Lrex6iDBKtkvhNYBYNTDGA">
+<tr data-page-node-id="zWcXQT96mIdVHkLgUuHQ08">
+<td data-page-node-id="9U9OjCpI6qngvzpGgr7tGr">机器学习模型（传统）</td>
+<td data-page-node-id="vJWgLTzZtmTzmdQh1IkEVV">针对单一任务训练的小模型（分类、回归）</td>
+<td data-page-node-id="XKCmmJQTugiwGWS0vkJuYj">只会一门手艺的技工</td>
 </tr>
-<tr>
-<td>大语言模型 LLM</td>
-<td>预训练+规模化，多任务通用的文字大脑</td>
-<td>读了万卷书的通才</td>
+<tr data-page-node-id="FRWl4QxjFWDndYUSQU2dro">
+<td data-page-node-id="P9DSccZUpAkAl6hr7LdZOB">大语言模型 LLM</td>
+<td data-page-node-id="FNZgVfSjVImRx61MvDYpDf">预训练+规模化，多任务通用的文字大脑</td>
+<td data-page-node-id="RHddrK4yb5AI7fQ1BsyV9a">读了万卷书的通才</td>
 </tr>
-<tr>
-<td>ChatGPT 等产品</td>
-<td>LLM + 产品外壳（对话界面、安全、记忆功能）</td>
-<td>LLM 的"营业门店"</td>
+<tr data-page-node-id="o4a5T3vsdbFDVz0kes8k68">
+<td data-page-node-id="GIEMKkEHhnFs5xWOjwe6HP">ChatGPT 等产品</td>
+<td data-page-node-id="GXr7eTyzC2uunI7OgGDk2K">LLM + 产品外壳（对话界面、安全、记忆功能）</td>
+<td data-page-node-id="DPMd3bftizKDgqBfKewW9g">LLM 的"营业门店"</td>
 </tr>
-<tr>
-<td>Agent（智能体）</td>
-<td>LLM + 工具 + 循环 + 记忆组成的行为系统</td>
-<td>LLM 装上了手脚</td>
+<tr data-page-node-id="WoIUJJ0JrsQj2xkqrrmXXu">
+<td data-page-node-id="c4UbnsP31gJbtvSSetOWFC">Agent（智能体）</td>
+<td data-page-node-id="n4kwxktiw9dnzh8q54uTnx">LLM + 工具 + 循环 + 记忆组成的行为系统</td>
+<td data-page-node-id="zFF9rfkL1lYplmgb3pFJII">LLM 装上了手脚</td>
 </tr>
-<tr>
-<td>模型微调（Fine-tune）</td>
-<td>在通用 LLM 基础上用领域数据再训练</td>
-<td>通才再上职业培训班</td>
+<tr data-page-node-id="0schVjQLtsAxVTcwbxemfT">
+<td data-page-node-id="GjKSmCOIHv8rnS2eynmlLG">模型微调（Fine-tune）</td>
+<td data-page-node-id="dIMPof8LcZMitpySniO6qp">在通用 LLM 基础上用领域数据再训练</td>
+<td data-page-node-id="2yPTZmyCXh1OoShPIm94ah">通才再上职业培训班</td>
 </tr>
 </tbody>
 </table>
-<p>高频混淆点：</p>
-<ul>
-<li><strong>LLM ≠ 聊天机器人</strong>。ChatGPT 是产品，它背后是 LLM 加一层产品化包装；很多聊天机器人只是 LLM 的一种用法。</li>
-<li><strong>LLM ≠ Agent</strong>。模型是"只会输出的文字大脑"，Agent 是"能调用工具、能行动的系统"。把模型装进 Agent 框架，模型才有手有脚。</li>
-<li><strong>"模型"这个词在不同语境不同义</strong>：在"训练模型"里指算法参数本身；在"调用模型 API"里指一个部署好的推理服务。作业语境中"模型"通常指 LLM。</li>
+<p data-page-node-id="lpCm6Y7rr2yq6j25pLoiOQ">高频混淆点：</p>
+<ul data-page-node-id="hzhBnJMTDbIMKpLPZ0xOwe">
+<li data-page-node-id="c1XzA7rNytratpYF6agzfh"><strong data-page-node-id="6tPdiBfeeYmraNgtTmO55h">LLM ≠ 聊天机器人</strong>。ChatGPT 是产品，它背后是 LLM 加一层产品化包装；很多聊天机器人只是 LLM 的一种用法。</li>
+<li data-page-node-id="Gqn34drNDSTYg3JBp06nT3"><strong data-page-node-id="FRNYonKhf9EAnGxECOVCjY">LLM ≠ Agent</strong>。模型是"只会输出的文字大脑"，Agent 是"能调用工具、能行动的系统"。把模型装进 Agent 框架，模型才有手有脚。</li>
+<li data-page-node-id="gHT18sqELXIyEYM0IPqjv9"><strong data-page-node-id="Q26ccWCD3rkdGdGYTNa6aB">"模型"这个词在不同语境不同义</strong>：在"训练模型"里指算法参数本身；在"调用模型 API"里指一个部署好的推理服务。作业语境中"模型"通常指 LLM。</li>
 </ul>
-<h2 id="_7">使用边界 / 常见误区</h2>
-<ul>
-<li><strong>知识有截止日期</strong>：LLM 学的是训练时的语料，不知道之后发生的事（除非外部检索补充）。</li>
-<li><strong>幻觉</strong>：模型会一本正经地编造看似合理的内容，尤其被问到知识盲区时。需要"可核查来源"的设计来兜底（你在资料里每条来源都要求可核查，就是这个原因）。</li>
-<li><strong>上下文窗口有限</strong>：模型一次只能"看到"窗口内的内容（见 llm-context.md），超出就忘。</li>
-<li><strong>大模型对小任务杀鸡用牛刀</strong>：分类、抽取这类固定任务，小模型或规则更快更便宜。Anthropic 的建议：能用简单方案就别上大模型。</li>
-<li>常见误区：以为 LLM"什么都知道、不会错"。它擅长的是"流畅地像知道"，事实准确性要靠资料、检索和人工核查保证。</li>
+<h2 id="_7" data-page-node-id="zrDNq2wZ7X9KEndPM5D7eB">使用边界 / 常见误区</h2>
+<ul data-page-node-id="v7NnO1SLn6pUwi6UepJDBx">
+<li data-page-node-id="xPqr0wxJDd2L0pG3UOvB14"><strong data-page-node-id="jo4WWEkVTiJ2xqhzjIVBxg">知识有截止日期</strong>：LLM 学的是训练时的语料，不知道之后发生的事（除非外部检索补充）。</li>
+<li data-page-node-id="TY9r5cKPETfGKdWD0yqSGS"><strong data-page-node-id="Mb2IlUDyPahXBt0GGfxBdL">幻觉</strong>：模型会一本正经地编造看似合理的内容，尤其被问到知识盲区时。需要"可核查来源"的设计来兜底（你在资料里每条来源都要求可核查，就是这个原因）。</li>
+<li data-page-node-id="5Fh1e15FEE3SRXMBb4FT58"><strong data-page-node-id="85tlFprJxeWa6nNxEDWhSb">上下文窗口有限</strong>：模型一次只能"看到"窗口内的内容（见 llm-context.md），超出就忘。</li>
+<li data-page-node-id="A4ZddIAZgEDiKJILLnxPdB"><strong data-page-node-id="c1zwtYSn8nbK8SQmeIjGrs">大模型对小任务杀鸡用牛刀</strong>：分类、抽取这类固定任务，小模型或规则更快更便宜。Anthropic 的建议：能用简单方案就别上大模型。</li>
+<li data-page-node-id="iA9wX8ndm1HDikkXchMQ2y">常见误区：以为 LLM"什么都知道、不会错"。它擅长的是"流畅地像知道"，事实准确性要靠资料、检索和人工核查保证。</li>
 </ul>
-<h2 id="_8">自测问题</h2>
-<p><details>
-<summary>1. 判断：LLM 预训练阶段就在学"怎么跟人对话"。对吗？</summary>
-<p>不对。预训练阶段只学"预测下一个词"（续写）。"会对话"来自之后的指令微调和人类反馈对齐。</p>
+<h2 id="_8" data-page-node-id="i9foDp1YPpaL4BCaMu6MdY">自测问题</h2>
+<p data-page-node-id="dJlt0ZnxzEa2HWFhAMtctT"><details data-page-node-id="efeuxe5sryGzdE66dab1xd">
+<summary data-page-node-id="tlkHZ78dpCuZ7MJkZYM2cl">1. 判断：LLM 预训练阶段就在学"怎么跟人对话"。对吗？</summary>
+<p data-page-node-id="gwjIqRemWcIZPyBVVYG3rT">不对。预训练阶段只学"预测下一个词"（续写）。"会对话"来自之后的指令微调和人类反馈对齐。</p>
 </details></p>
-<p><details>
-<summary>2. 为什么参数规模变大后会出现"涌现能力"？举两个例子。</summary>
-<p>当规模跨过阈值，小模型没有的能力突然出现，例如：上下文学习（给几个示例就能照做）、指令遵循、思维链推理。学界对涌现的机制仍有争论，但经验规律是规模带来质变。</p>
+<p data-page-node-id="X0t7BhOCSIyx2A9CFkonqQ"><details data-page-node-id="uyIG9COQfVHUWYNZOD0oi1">
+<summary data-page-node-id="dP1RK0EAUuUkHUjDup36nj">2. 为什么参数规模变大后会出现"涌现能力"？举两个例子。</summary>
+<p data-page-node-id="606kax2SrbxUm0P88RIjh2">当规模跨过阈值，小模型没有的能力突然出现，例如：上下文学习（给几个示例就能照做）、指令遵循、思维链推理。学界对涌现的机制仍有争论，但经验规律是规模带来质变。</p>
 </details></p>
-<p><details>
-<summary>3. 简答：Agent 系统里，模型、上下文、Skill 各干什么？</summary>
-<p>模型是决策大脑（负责"想"）；上下文是模型每次决策能看到的全部信息（工作台）；Skill 是按需加载进上下文的方法包（作业指导书）。模型本身不能行动，靠 Agent 循环里的工具行动。</p>
+<p data-page-node-id="O2B1Rc6lXu4vopWCoXBRI0"><details data-page-node-id="aNaBARA84DzLve3whGVjky">
+<summary data-page-node-id="YD9mZOxDTiZ8p9F9eampWc">3. 简答：Agent 系统里，模型、上下文、Skill 各干什么？</summary>
+<p data-page-node-id="fDhfsGcByRt9YB4vkjH5G1">模型是决策大脑（负责"想"）；上下文是模型每次决策能看到的全部信息（工作台）；Skill 是按需加载进上下文的方法包（作业指导书）。模型本身不能行动，靠 Agent 循环里的工具行动。</p>
 </details></p>
-<p><details>
-<summary>4. 场景题：老板让"用大模型自动提取合同里的金额"，你直接调最大的模型 API。有何不妥？</summary>
-<p>任务固定、边界清晰，可能用不上最大最贵的模型；先评估小模型/规则/提示方案，简单方案能解决就别上大模型（成本、延迟、幻觉风险都更低）。</p>
+<p data-page-node-id="29rLJfL6Vd7onkGyaUqfyw"><details data-page-node-id="gWFkHsXrrwtcPNqlOBkW8H">
+<summary data-page-node-id="gNGcL9Voam1cidtvVFfHdB">4. 场景题：老板让"用大模型自动提取合同里的金额"，你直接调最大的模型 API。有何不妥？</summary>
+<p data-page-node-id="Bx4R70KJCzkBFyEkVG8yEu">任务固定、边界清晰，可能用不上最大最贵的模型；先评估小模型/规则/提示方案，简单方案能解决就别上大模型（成本、延迟、幻觉风险都更低）。</p>
 </details></p>
-<h2 id="_9">参考来源</h2>
-<ol>
-<li><strong>Wayne Xin Zhao 等 —《A Survey of Large Language Models》（2023，持续更新）</strong>
+<h2 id="_9" data-page-node-id="8JgUneA7wtAAJ7HG0dL7rO">参考来源</h2>
+<ol data-page-node-id="kQ3aEoyCR4HD5S7TZU2P6y">
+<li data-page-node-id="wMpKgNwuCRhiThLXoy3fgm"><strong data-page-node-id="5xcCbHD16jDCDDXxOuo35W">Wayne Xin Zhao 等 —《A Survey of Large Language Models》（2023，持续更新）</strong>
    https://arxiv.org/abs/2303.18223
    用途：支撑 LLM 定义、涌现能力（上下文学习/指令遵循/思维链）、预训练-调优-利用-评估四方面框架。权威综述，2026-09-09 检索确认存在。</li>
-<li><strong>Vaswani 等 —《Attention Is All You Need》（2017）</strong>
+<li data-page-node-id="pjRAJQuVDsrPFs4YHgJGTJ"><strong data-page-node-id="hvvqFNRqb3gQoLTZ1TmZhB">Vaswani 等 —《Attention Is All You Need》（2017）</strong>
    https://arxiv.org/abs/1706.03762
    用途：支撑"Transformer + 自注意力是现代 LLM 架构基础"论断。长期稳定学术资源。</li>
-<li><strong>OpenAI —《Compare models》（官方模型文档）</strong>
+<li data-page-node-id="ag0cJzue2kEe37YAZGAvQw"><strong data-page-node-id="bnt4g2pBdsoDBcwsW1WOZg">OpenAI —《Compare models》（官方模型文档）</strong>
    https://platform.openai.com/docs/models/compare
    用途：查具体模型参数、上下文窗口、能力差异（本仓库 llm-context.md 同源引用）。</li>
-<li><strong>Anthropic —《Building Effective Agents》（2024）</strong>
+<li data-page-node-id="Lft0uxN2QgP6dq2AE2NMnc"><strong data-page-node-id="I9SmsNneelXlhUS6uihwNZ">Anthropic —《Building Effective Agents》（2024）</strong>
    https://www.anthropic.com/engineering/building-effective-agents
    用途：支撑"增强型 LLM = 模型 + 工具 + 检索 + 记忆"以及"模型在 Agent 中承担动态决策"论断（与 agent.md 呼应）。</li>
-<li><strong>中文维基百科 —《大型语言模型》</strong>
+<li data-page-node-id="n0JpCKeIs4UYUWvc9OiieZ"><strong data-page-node-id="OcX4IOpmoBkEtDBjwqeaPy">中文维基百科 —《大型语言模型》</strong>
    https://zh.wikipedia.org/wiki/大型语言模型
    用途：中文入门背景对照。</li>
 </ol>
-<blockquote>
-<p>核查记录：链接 1、4 于 2026-09-09 经检索确认有效；链接 2、3 为长期稳定学术/官方资源；链接 5 本机网络当日访问受限，建议打开复核。个人类比（"文字天才/通才技工"）为个人加工，非资料原文。本文档为新生成资料，<strong>待作者人工核查</strong>后可将头部 review_status 改为"已人工核查"。</p>
+<blockquote data-page-node-id="qXXuplanPGDrtojLvvuAzj">
+<p data-page-node-id="OgYfPq6DCSIRTvJ6thJbRo">核查记录：链接 1、4 于 2026-09-09 经检索确认有效；链接 2、3 为长期稳定学术/官方资源；链接 5 本机网络当日访问受限，已由作者另行复核。个人类比（"文字天才/通才技工"）为个人加工，非资料原文。本文档已经作者通读核查（2026-09-09）。</p>
 </blockquote>
-<hr>
-<footer style="font-size:.85em;color:#6e7781">
-本文档由 concept-learner Skill 生成，经作者人工核查（待人工核查）。
+<hr data-page-node-id="5AMPWNPRUUkuWdx4MnIwdF">
+<footer style="font-size:.85em;color:#6e7781" data-page-node-id="P6JGp6UOE1AM1B1CT54Pol">
+本文档由 concept-learner Skill 生成，经作者人工核查（已人工核查（本人通读并修改））。
 </footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>

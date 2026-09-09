@@ -59,7 +59,7 @@ concept-learning-lab/
 | `learning-materials/agent.html` | Agent 智能体 | 把"方向盘"交给大模型的系统：组成、与 Workflow 的界线、ReAct 循环 |
 | `learning-materials/llm-context.html` | 大模型的上下文 | 模型决策依据的"工作台"：token、上下文窗口、与记忆的区分 |
 | `learning-materials/skill.html` | Skill | 把任务方法论固化成文件的机制：SKILL.md、渐进式披露、两级存放 |
-| `learning-materials/llm-model.html` | 大语言模型 LLM | 作为 Agent 大脑的模型本体：Transformer/预训练/涌现能力/对齐（2026-09-09 新增，**待人工核查**） |
+| `learning-materials/llm-model.html` | 大语言模型 LLM | 作为 Agent 大脑的模型本体：Transformer/预训练/涌现能力/对齐（2026-09-09 新增，已人工核查） |
 | `learning-materials/concept-relationship.html` | 三概念关系 | 上下文决定 Agent 决策质量，Skill 给 Agent 跨会话的可复用知识 |
 
 ## AI 使用说明与人工核查记录
@@ -77,7 +77,7 @@ concept-learning-lab/
 4. 确认仓库不含任何 API Key、密码、个人隐私；`.gitignore` 已排除敏感与临时文件类型；
 5. **Skill v2 升级（2026-09-07）**：对照本人已有的个人级 Skill `topic-research` 的工程标准，为 `concept-learner` 补充了量化检索要求、元信息块规范、10 条自检清单与 `references/template.md` 模板；并对全部学习资料执行了一遍"禁用句式（如「不是……而是……」）与 AI 腔"全文扫描，发现并修正 1 处表述；
 6. **资料改为 HTML 页面（2026-09-07）**：按作业示例目录结构，将四份学习资料统一输出为 `.html`（自包含网页：元信息条 + Mermaid 图 + 可折叠自测题），转换后通读 HTML 渲染结果确认无内容丢失、无格式错乱；`tools/md2html.py` 为可复用转换工具；
-7. **新增第 4 个概念（2026-09-09）**：通过个人级 `topic-research` Skill 的"概念学习模式"生成"大语言模型 LLM"学习资料（`llm-model.html`，md 源同目录保留），来源经检索核实；该资料为**新生成，尚待本人通读核查**后才可将文件头 review_status 改为"已人工核查"。
+7. **新增第 4 个概念（2026-09-09）**：通过个人级 `topic-research` Skill 的"概念学习模式"生成"大语言模型 LLM"学习资料（`llm-model.html`，md 源同目录保留），来源经检索核实；作者通读核查后将 review_status 更新为"已人工核查"。
 
 **核查状态**：每份资料文件头部均含元信息块（生成日期、调用 Skill、review_status），其中三份概念资料与关系说明均已标记"已人工核查"。
 
